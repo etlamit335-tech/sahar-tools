@@ -9,101 +9,92 @@
     <script src="data.js"></script>
 </head>
 <body class="h-screen flex overflow-hidden font-sans">
-
-<nav id="sidebar" class="hidden w-full md:w-80 bg-white shadow-2xl flex flex-col z-30 border-l border-gray-200 overflow-hidden">
-    <div class="p-6 border-b border-gray-200 flex flex-col gap-4">
-        <div class="flex items-center gap-4 text-[#3b4d36]">
-            <span class="text-4xl">☾</span>
-            <h1 class="text-xl font-black text-gray-900 leading-tight">השפה הסהרית</h1>
+    <nav id="sidebar" class="hidden w-full md:w-80 bg-white shadow-2xl flex flex-col z-30 border-l border-gray-200 overflow-hidden">
+        <div class="p-6 border-b border-gray-200 flex flex-col gap-4">
+            <div class="flex items-center gap-4">
+                <span class="text-4xl text-[#3b4d36]">☾</span>
+                <h1 class="text-xl font-black text-gray-900 leading-tight">השפה הסהרית</h1>
+            </div>
+            <button onclick="location.reload()" class="w-full py-2 bg-[#3b4d36] text-white rounded-lg font-bold text-sm hover:opacity-90 transition-all">🏠 חזרה לדף הבית</button>
         </div>
-        <button onclick="location.reload()" class="w-full py-2 bg-[#3b4d36] text-white rounded-lg font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
-            🏠 חזרה לדף הבית
-        </button>
-    </div>
-    <div class="flex-1 overflow-y-auto py-4 hide-scroll px-2 space-y-1" id="navContainer"></div>
-</nav>
+        <div class="flex-1 overflow-y-auto py-4 hide-scroll px-2 space-y-1" id="navContainer"></div>
+    </nav>
 
-<main class="flex-1 overflow-y-auto relative bg-[#fcfbf9]" id="mainContent"></main>
+    <main class="flex-1 overflow-y-auto relative bg-[#fcfbf9]" id="mainContent"></main>
 
-<script>
-let currentSectionId = 'intro';
-let currentSubId = null;
-let currentItemId = null;
+    <script>
+        let currentSectionId = 'intro';
+        let currentSubId = null;
+        let currentItemId = null;
 
-function renderLanding() {
-    document.getElementById('sidebar').classList.add('hidden');
-    document.getElementById('mainContent').innerHTML = `
-        <div class="min-h-screen flex flex-col items-center justify-center p-10 text-center fade-in">
-            <div class="mb-12">
-                <span class="text-9xl text-[#3b4d36] block mb-6">☾</span>
-                <h1 class="text-5xl md:text-7xl font-black text-gray-900 leading-tight">מרכז הלמידה של סה"ר</h1>
-                <p class="text-2xl text-gray-500 mt-4 font-bold italic">הכשרה, אימון וניתוח פדגוגי במקום אחד</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-7xl">
-                <a href="simulator.html" class="big-card bg-white p-14 rounded-[4rem] shadow-sm"><span class="text-8xl mb-8">🎮</span><h3 class="text-3xl font-black text-[#3b4d36]">סימולטור</h3></a>
-                <a href="analyzer.html" class="big-card bg-white p-14 rounded-[4rem] shadow-sm"><span class="text-8xl mb-8">🔍</span><h3 class="text-3xl font-black text-[#3b4d36]">ניתוח שיחה</h3></a>
-                <button onclick="startLearning()" class="big-card bg-[#3b4d36] p-14 rounded-[4rem] text-white shadow-lg"><span class="text-8xl mb-8">📖</span><h3 class="text-3xl font-black text-white">השפה הסהרית</h3></button>
-            </div>
-        </div>`;
-}
+        function renderLanding() {
+            document.getElementById('sidebar').classList.add('hidden');
+            document.getElementById('mainContent').innerHTML = `
+                <div class="min-h-screen flex flex-col items-center justify-center p-10 text-center fade-in bg-[#fcfbf9]">
+                    <div class="mb-12">
+                        <span class="text-9xl text-[#3b4d36] block mb-6">☾</span>
+                        <h1 class="text-6xl font-black text-gray-900">מרכז הלמידה של סה"ר</h1>
+                        <p class="text-2xl text-gray-500 mt-4 font-bold">הכשרה, אימון וניתוח פדגוגי</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-7xl">
+                        <a href="simulator.html" class="big-card bg-white p-14 rounded-[4rem] shadow-sm"><span class="text-8xl mb-8">🎮</span><h3 class="text-3xl font-black text-[#3b4d36]">סימולטור</h3></a>
+                        <a href="analyzer.html" class="big-card bg-white p-14 rounded-[4rem] shadow-sm"><span class="text-8xl mb-8">🔍</span><h3 class="text-3xl font-black text-[#3b4d36]">ניתוח שיחה</h3></a>
+                        <button onclick="startLearning()" class="big-card bg-[#3b4d36] p-14 rounded-[4rem] text-white shadow-lg"><span class="text-8xl mb-8">📖</span><h3 class="text-3xl font-black">השפה הסהרית</h3></button>
+                    </div>
+                </div>`;
+        }
 
-function startLearning() {
-    document.getElementById('sidebar').classList.remove('hidden');
-    currentSectionId = 'intro';
-    currentSubId = null;
-    currentItemId = null;
-    renderSidebar();
-    showContent('intro');
-}
+        function startLearning() {
+            document.getElementById('sidebar').classList.remove('hidden');
+            renderSidebar();
+            showContent('intro');
+        }
 
-function renderSidebar() {
-    const container = document.getElementById('navContainer');
-    container.innerHTML = '';
-    sectionsData.forEach(section => {
-        const isActive = currentSectionId === section.id;
-        const btn = document.createElement('button');
-        btn.className = `nav-btn w-full text-right p-4 transition-all flex items-center justify-between group ${isActive ? 'active' : ''}`;
-        btn.innerHTML = `<div class="flex items-center gap-3"><span class="text-xl">${section.icon}</span><span class="font-bold text-sm">${section.title}</span></div>${section.subs ? '<span class="text-[10px]">▼</span>' : ''}`;
-        btn.onclick = () => { currentSectionId = section.id; currentSubId = null; currentItemId = null; renderSidebar(); showContent(section.id); };
-        container.appendChild(btn);
+        function renderSidebar() {
+            const container = document.getElementById('navContainer');
+            container.innerHTML = '';
+            sectionsData.forEach(section => {
+                const isActive = currentSectionId === section.id;
+                const btn = document.createElement('button');
+                btn.className = `nav-btn w-full text-right p-4 flex items-center justify-between group ${isActive ? 'active' : ''}`;
+                btn.innerHTML = `<div class="flex items-center gap-3"><span>${section.icon}</span><span class="font-bold text-sm">${section.title}</span></div>`;
+                btn.onclick = () => { currentSectionId = section.id; currentSubId = null; currentItemId = null; renderSidebar(); showContent(section.id); };
+                container.appendChild(btn);
 
-        if (isActive && section.subs) {
-            const subBox = document.createElement('div');
-            subBox.className = "bg-gray-50/50 py-1 mx-2 border-r-2 border-[#3b4d36]/20";
-            section.subs.forEach(sub => {
-                const isSubActive = currentSubId === sub.id;
-                const subBtn = document.createElement('button');
-                subBtn.className = `sub-nav-btn ${isSubActive ? 'active' : ''}`;
-                subBtn.innerText = sub.title;
-                subBtn.onclick = (e) => { e.stopPropagation(); currentSubId = sub.id; currentItemId = null; renderSidebar(); showContent(section.id, sub.id); };
-                subBox.appendChild(subBtn);
+                if (isActive && section.subs) {
+                    section.subs.forEach(sub => {
+                        const isSubActive = currentSubId === sub.id;
+                        const subBtn = document.createElement('button');
+                        subBtn.className = `sub-nav-btn ${isSubActive ? 'active' : ''}`;
+                        subBtn.innerText = sub.title;
+                        subBtn.onclick = (e) => { e.stopPropagation(); currentSubId = sub.id; currentItemId = null; renderSidebar(); showContent(section.id, sub.id); };
+                        container.appendChild(subBtn);
 
-                if (isSubActive && sub.items) {
-                    sub.items.forEach(item => {
-                        const itemBtn = document.createElement('button');
-                        itemBtn.className = `sub-sub-nav-btn text-[12px] pr-8 py-2 text-right w-full block ${currentItemId === item.id ? 'font-black text-[#3b4d36]' : 'text-gray-400'}`;
-                        itemBtn.innerText = "• " + item.title;
-                        itemBtn.onclick = (e) => { e.stopPropagation(); currentItemId = item.id; renderSidebar(); showContent(section.id, sub.id, item.id); };
-                        subBox.appendChild(itemBtn);
+                        if (isSubActive && sub.items) {
+                            sub.items.forEach(item => {
+                                const itemBtn = document.createElement('button');
+                                itemBtn.className = `sub-sub-nav-btn ${currentItemId === item.id ? 'active' : ''}`;
+                                itemBtn.innerText = "• " + item.title;
+                                itemBtn.onclick = (e) => { e.stopPropagation(); currentItemId = item.id; renderSidebar(); showContent(section.id, sub.id, item.id); };
+                                container.appendChild(itemBtn);
+                            });
+                        }
                     });
                 }
             });
-            container.appendChild(subBox);
         }
-    });
-}
 
-function showContent(secId, subId = null, itemId = null) {
-    const sec = sectionsData.find(s => s.id === secId);
-    let content = sec.content;
-    if (subId) {
-        const sub = sec.subs.find(s => s.id === subId);
-        content = itemId ? sub.items.find(i => i.id === itemId).content : sub.content;
-    }
-    document.getElementById('mainContent').innerHTML = `<div class="p-6 md:p-14">${content}</div>`;
-}
+        function showContent(secId, subId = null, itemId = null) {
+            const sec = sectionsData.find(s => s.id === secId);
+            let html = sec.content;
+            if (subId) {
+                const sub = sec.subs.find(s => s.id === subId);
+                html = itemId ? sub.items.find(i => i.id === itemId).content : sub.content;
+            }
+            document.getElementById('mainContent').innerHTML = `<div class="p-6 md:p-14">${html}</div>`;
+        }
 
-document.addEventListener('DOMContentLoaded', renderLanding);
-</script>
+        document.addEventListener('DOMContentLoaded', renderLanding);
+    </script>
 </body>
 </html>
