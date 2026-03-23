@@ -1,315 +1,55 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מרכז הלמידה של סה"ר - המדריך המלא</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-tailwind.config = {
-theme: {
-extend: {
-colors: {
-sahar: {
-bg: '#fcfbf9',
-surface: '#ffffff',
-text: '#111827',
-muted: '#4b5563',
-primary: '#3b4d36',
-primaryLight: '#f1f5f0',
-alert: '#b55d4d',
-border: '#e5e7eb',
-saharBlue: '#3b82f6',
-saharGray: '#6b7280'
-}
-}
-}
-}
-}
-</script>
-<style>
-body { background-color: #fcfbf9; color: #111827; font-family: system-ui, -apple-system, sans-serif; text-align: right; margin: 0; }
-.hide-scroll::-webkit-scrollbar { display: none; }
-.nav-btn.active { background-color: #f1f5f0; color: #3b4d36; border-right: 4px solid #3b4d36; font-weight: bold; }
-.sub-nav-btn { font-size: 0.85rem; padding: 0.7rem 2.5rem 0.7rem 1rem; border-right: 2px solid transparent; transition: all 0.2s; text-align: right; width: 100%; display: block; color: #4b5563; }
-.sub-nav-btn.active { color: #3b4d36; font-weight: 800; border-right-color: #3b4d36; background-color: #f9fafb; }
-.sub-sub-nav-btn { font-size: 0.75rem; padding: 0.5rem 3.5rem 0.5rem 1rem; border-right: 2px solid transparent; transition: all 0.2s; text-align: right; width: 100%; display: block; color: #6b7280; }
-.sub-sub-nav-btn.active { color: #3b4d36; font-weight: 700; background-color: #f3f4f6; }
-
-.content-area-wide { line-height: 1.95; font-size: 1.15rem; max-width: 1000px; margin: 0 auto; }
-.content-area-wide p { margin-bottom: 1.5rem; text-align: justify; }
-.content-area-wide h2 { font-size: 2.4rem; font-weight: 900; color: #3b4d36; margin-top: 1rem; margin-bottom: 0.5rem; line-height: 1.2; }
-.content-area-wide h3 { font-size: 1.8rem; font-weight: 800; color: #3b4d36; margin-top: 1.5rem; margin-bottom: 1rem; }
-.content-area-wide h4 { font-size: 1.4rem; font-weight: 800; color: #1f2937; margin-top: 1.5rem; margin-bottom: 1rem; }
-.fade-in { animation: fadeIn 0.3s ease-out; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-.quote-block { border-right: 6px solid #3b4d36; padding: 1.5rem 2.5rem; background: #f1f5f0; font-style: italic; margin: 2.5rem 0; border-radius: 0 0.75rem 0.75rem 0; font-weight: bold; text-align: center; font-size: 1.25rem; }
-.sahar-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-.sahar-table th { background-color: #3b4d36; color: white; padding: 1rem; text-align: right; }
-.sahar-table td { padding: 1rem; border-bottom: 1px solid #e5e7eb; background-color: white; }
-.big-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid #e5e7eb; }
-.big-card:hover { transform: translateY(-10px); border-color: #3b4d36; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מרכז הלמידה של סה"ר</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #fcfbf9; font-family: system-ui, sans-serif; }
+        .big-card { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 2px solid #e5e7eb; 
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .big-card:hover { 
+            transform: translateY(-10px); 
+            border-color: #3b4d36; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); 
+        }
+    </style>
 </head>
-<body class="h-screen overflow-hidden">
+<body class="min-h-screen flex flex-col items-center justify-center p-10 text-center">
 
-<div id="landingPage" class="min-h-screen flex flex-col items-center justify-center p-10 text-center bg-sahar-bg fade-in">
     <div class="mb-12">
-        <span class="text-9xl text-sahar-primary block mb-6">☾</span>
-        <h1 class="text-5xl md:text-7xl font-black text-sahar-primary">ברוכים הבאים למרכז הלמידה</h1>
-        <p class="text-2xl text-sahar-muted mt-4 font-bold">עמותת סה"ר - סיוע והקשבה ברשת</p>
+        <span class="text-9xl text-[#3b4d36] block mb-6">☾</span>
+        <h1 class="text-5xl md:text-7xl font-black text-gray-900 leading-tight">ברוכים הבאים למרכז הלמידה</h1>
+        <p class="text-2xl text-gray-500 mt-4 font-bold italic">עמותת סה"ר - סיוע והקשבה ברשת</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-7xl">
-        <a href="simulator.html" class="big-card bg-white p-14 rounded-[4rem] flex flex-col items-center no-underline group shadow-sm">
-            <span class="text-8xl mb-8 group-hover:scale-110 transition-transform">🎮</span>
-            <h3 class="text-3xl font-black text-sahar-primary mb-3">סימולטור</h3>
-            <p class="text-sahar-muted font-medium italic">אימון אישי מול פונה AI</p>
+        <a href="simulator.html" class="big-card bg-white p-14 rounded-[4rem] shadow-sm">
+            <span class="text-8xl mb-8">🎮</span>
+            <h3 class="text-3xl font-black text-[#3b4d36] mb-3">סימולטור</h3>
+            <p class="text-gray-400 font-medium italic">אימון אישי מול פונה AI</p>
         </a>
 
-        <a href="analyzer.html" class="big-card bg-white p-14 rounded-[4rem] flex flex-col items-center no-underline group shadow-sm">
-            <span class="text-8xl mb-8 group-hover:scale-110 transition-transform">🔍</span>
-            <h3 class="text-3xl font-black text-sahar-primary mb-3">ניתוח שיחה</h3>
-            <p class="text-sahar-muted font-medium italic">קבלת משוב פדגוגי מלא</p>
+        <a href="analyzer.html" class="big-card bg-white p-14 rounded-[4rem] shadow-sm">
+            <span class="text-8xl mb-8">🔍</span>
+            <h3 class="text-3xl font-black text-[#3b4d36] mb-3">ניתוח שיחה</h3>
+            <p class="text-gray-400 font-medium italic">קבלת משוב פדגוגי מלא</p>
         </a>
 
-        <button onclick="enterLearningMode()" class="big-card bg-sahar-primary p-14 rounded-[4rem] flex flex-col items-center text-white shadow-lg">
-            <span class="text-8xl mb-8 group-hover:scale-110 transition-transform">📖</span>
-            <h3 class="text-3xl font-black mb-3">השפה הסהרית</h3>
-            <p class="opacity-90 font-medium italic">המדריך המקצועי המלא</p>
-        </button>
+        <a href="guide.html" class="big-card bg-[#3b4d36] p-14 rounded-[4rem] text-white shadow-lg">
+            <span class="text-8xl mb-8">📖</span>
+            <h3 class="text-3xl font-black text-white mb-3">השפה הסהרית</h3>
+            <p class="opacity-80 font-medium italic">המדריך המקצועי המלא</p>
+        </a>
     </div>
-</div>
 
-<div id="learningMode" class="hidden h-screen flex flex-col md:flex-row overflow-hidden">
-    <nav class="w-full md:w-80 bg-sahar-surface shadow-2xl flex flex-col z-30 flex-shrink-0 border-l border-sahar-border overflow-hidden">
-        <div class="p-6 border-b border-sahar-border bg-white">
-            <div class="flex items-center gap-4 mb-4">
-                <span class="text-4xl text-sahar-primary">☾</span>
-                <h1 class="text-xl font-black text-sahar-text">השפה הסהרית</h1>
-            </div>
-            <button onclick="exitLearningMode()" class="w-full py-2 bg-sahar-primary text-white rounded-lg font-bold text-sm hover:opacity-90">🏠 חזרה לדף הבית</button>
-        </div>
-        <div class="flex-1 overflow-y-auto py-4 flex flex-col hide-scroll px-2 space-y-1" id="navContainer"></div>
-    </nav>
-    <main class="flex-1 overflow-y-auto p-6 md:p-14 relative bg-sahar-bg" id="mainContent"></main>
-</div>
-
-<script>
-// המלל המקורי שלך - שלם לחלוטין (Verbatim)
-const sectionsData = [
-    { 
-        id: 'intro', 
-        title: 'מבוא', 
-        icon: '📖',
-        content: `
-            <div class="content-area-wide fade-in">
-                <h2>הסיוע הסהרי - להיות איתו בבור</h2>
-                <div class="subtitle text-xl font-bold text-gray-500 mb-2">נוכחות, הקשבה והצלת חיים במרחב הדיגיטלי</div>
-                <div class="context italic text-gray-400 mb-6">השפה כמעשה של חסד אקזיסטנציאלי</div>
-                <p>השפה הסהרית היא הוכחה לכך שבתוך המכונה הדיגיטלית הקרה, פועם לב אנושי חם. היא אינה רק שיטת עבודה, אלא שליחות המבקשת להפוך את המקלדת לכלי של ריפוי ואת חלון הצ'אט למרחב של חסד. זוהי שפה שדורשת מאיתנו, המתנדבים, לוותר על האגו ועל הצורך "לתקן", ולהסכים לפגוש את האדם האחר במקום הכי חשוף ומדמם שלו. </p>
-                <p>המהפכה שבמילה הכתובה טמונה ביכולת שלה לייצר אינטימיות רדיקלית בתוך מרחב שהוא לכאורה קר, מנוכר וטכנולוגי. האופן שבו אנחנו קוראים את מצוקת הפונה והאופן שבו אנחנו מגיבים אליה בטקסט נדרשים לפצות על היעדר האינטונציה וקשר העין, ולהפוך את התגובה הכתובה לנוכחות חמה ומיטיבה.</p>
-                <p>בבסיס השפה הסהרית עומד ניצול מושכל של "אפקט הסרת העכבות". זהו מנגנון פסיכולוגי המאפשר לאדם, המוגן על ידי מסך ואנונימיות, להסיר את הגנותיו הנפשיות במהירות ועומק שלא תמיד מתאפשרים במפגש פנים-אל-פנים.</p>
-                <p>במרחב האנונימי, הפונה נוטה להשליך על המסייע את ה"עצמי" האידיאלי לו הוא זקוק. הטקסט הופך ל"עור שני" – מצד אחד הוא מגן על הפונה מהשיפוטיות של העולם החיצוני, ומצד שני מאפשר לו "לשפוך" אל תוך חלון הצ'אט תכנים של בושה, טראומה וייאוש שייתכן ולא נאמרו מעולם בקול. השפה הסהרית היא הכלי שנועד להחזיק את הגילויים הללו בבטחה, מבלי שהפונה ירגיש חשוף או פגיע מדי לאחר החשיפה.</p>
-                <p>המילים הכתובות בשפה הסהרית פועלות ברובד עמוק יותר מהתוכן הגלוי שלהן. הן מעניקות עדות חיה לסבל. כשאנו כותבים "כאן איתך… הלילה… בתוך השקט", אנו לא רק מוסרים מידע, אלא יוצרים מציאות חדשה שבה הפונה אינו לבד. </p>
-                <p>היכולת להחזיק את ה"בור" מבלי ליפול לתוכו, לזהות את ה"צורך הסמוי" מבעד לכאוס, ולנהל את ארכיטקטורת השיחה "תחת אש" – היא שהופכת את המילים לחוט המקשר בין ייאוש לתקווה, ובין המוות לחיים.</p>
-                <p>בכל הודעה שנשלחת, אנו בונים גשר מעל התהום. ייתכן והפונה מעולם לא הרגיש נראה כך; ייתכן וזו הפעם הראשונה שהוא זוכה לקול שלא שופט אותו. השפה הסהרית היא המתנה הגדולה ביותר שאנו יכולים לתת לאדם במצוקה: את הידיעה הוודאית שגם בחושך הכי סמיך של המרחב הווירטואלי, ישנה תודעה אנושית ערה שאומרת לו: "ראיתי אותך... שמעתי אותך... אתה כבר לא לבד".</p>
-            </div>
-        `
-    },
-    { 
-        id: 'vision', 
-        title: 'חזון וייעוד', 
-        icon: '🌟',
-        content: `
-            <div class="content-area-wide fade-in">
-                <h2>המפגש בין הפונה למתנדב - חזון וייעוד</h2>
-                <p>חזון עמותת סה"ר נשען על האמונה שקשר אנושי, חומל ומקבל הוא הכוח החזק ביותר למניעת אובדנות ולתמיכה במצוקות אנושיות. אנו לא פועלים כ"מוקד שירות" או כ"פתרון בעיות", אלא כ"מרחב מגונן" (Holding Environment):</p>
-                <div class="quote-block">מקום שבו הנפש יכולה "להתפרק" בבטחה כי יש מישהו שמחזיק את הקצוות</div>
-                <p><strong>מטרת השיחה: להיות עדים לסבל.</strong> המטרה היא לא "לפתור" את בעיות החיים של הפונה – פעולה שלעיתים קרובות אינה אפשרית ב-40 דקות – אלא להבטיח שהפונה לא יהיה לבד בתוך הכאב שלו.</p>
-                <p><strong>המרת הצעקה למילה:</strong> השפה הסהרית הופכת את המצוקה מ"רעש לבן" מציף, כאוטי ובלתי ניתן לעיבוד, ל"מילים" שניתן להתבונן בהן. </p>
-                <p><strong>נראות (Visibility):</strong> פונים רבים מגיעים לשיחה כשהם מרגישים שקופים בעולם. השפה הסהרית מחזירה להם את קיומם דרך ההכרה בסבלם.</p>
-            </div>
-        `,
-        subs: [
-            { 
-                id: 'outcomes_sub', 
-                title: 'מה הפונה מקבל מהשיחה', 
-                content: `
-                    <div class="content-area-wide fade-in">
-                        <h2>מה הפונה מקבל מהשיחה? (התוצאה הרגשית והקיומית)</h2>
-                        <p>הפונה עולה לשיחה במצב של "צמצום קוגניטיבי" – הוא רואה רק את הכאב, רק את הבור.</p>
-                        <p><strong>חוויה רגשית מתקנת:</strong> הוא פוגש דמות שלא נבהלת מהבור. עצם הישיבה של המתנדב איתו בתוך החושך מעניקה לו חוויה של קבלה עמוקה.</p>
-                        <p><strong>ארגון מחדש של הנפש:</strong> דרך השיקופים, הפונה מתחיל לראות "מפה" של הרגשות שלו. המצוקה הופכת מ"גוש חונק" לאוסף של רגשות בעלי שם.</p>
-                        <p><strong>הפגת הבדידות הטוטאלית:</strong> בסיום השיחה, הפונה לא יוצא בהכרח "שמח", אך הוא יוצא "מחובר". הוא מסיים כשהוא מרגיש שיש לפחות תודעה אחת בעולם שיודעת בדיוק מה עובר עליו.</p>
-                    </div>
-                `
-            }
-        ]
-    },
-    { 
-        id: 'philosophy', 
-        title: 'הפילוסופיה של הנוכחות', 
-        icon: '🧠',
-        content: `
-            <div class="content-area-wide fade-in">
-                <h2>הפילוסופיה של הנוכחות (עומק פסיכולוגי)</h2>
-                <p class="text-xl text-sahar-muted font-medium text-center">כאן נלמד על התשתית התיאורטית והקלינית עליה נשענת השפה הסהרית. בחרו בכותרות המשנה כדי להעמיק במושגי היסוד.</p>
-            </div>
-        `,
-        subs: [
-            { id: 'empathy_sub', title: 'אמפתיה', content: `<div class="content-area-wide fade-in"><h3>מהי אמפתיה?</h3><p>אמפתיה בסה"ר היא הכלי המרכזי ב"ארגז הכלים" של הנפש. היא הרבה מעבר ל"להיות נחמד".</p><p><strong>הגדרה פילוסופית וקלינית:</strong> אדית שטיין הגדירה אמפתיה כ"החוויה הכללית של תודעה זרה". היינץ קוהוט ראה בה "תצפית אינטרוספקטיבית לתוך עולמו של האחר".</p><p><strong>אמפתיה כחמצן נפשי:</strong> כשם שהגוף זקוק לחמצן, הנפש זקוקה לאמפתיה כדי לשמור על לכידותה.</p></div>` },
-            { id: 'compassion_sub', title: 'חמלה', content: `<div class="content-area-wide fade-in"><h3>מהי חמלה?</h3><p>חמלה (Compassion) אינה רחמים. רחמים יוצרים היררכיה, בעוד חמלה יוצרת שותפות ("אני ואתה יחד מול הסבל").</p><p><strong>הקשר הסמנטי:</strong> מחלה, חמלה, החלמה, מלחמה, חלימה.</p></div>` }
-        ]
-    },
-    { 
-        id: 'distress_types', 
-        title: 'סוגי מצוקות', 
-        icon: '😟',
-        content: `<div class="content-area-wide fade-in"><h2>סוגי מצוקות ואסטרטגיות שיחה</h2><p>בחרו בכותרות המשנה ללימוד אסטרטגיות מענה סהריות.</p></div>`,
-        subs: [
-            { 
-                id: 'suicide_d', 
-                title: 'אובדנות', 
-                content: `<div class="content-area-wide fade-in"><h3>הדיבור הישיר אל המוות</h3><p>כאשר המצוקה הופכת לסכנת חיים, השפה הסהרית עוברת שינוי דרמטי: היא הופכת משפה של הקשבה לשפה של עוגן וחדות.</p></div>`,
-                items: [
-                    { id: 's_risk', title: 'זיהוי סיכון', content: `<div class="content-area-wide fade-in"><h3>זיהוי הסיכון האובדני</h3><p>רמזים מילוליים ישירים: "אני רוצה למות", "אין לי למה לקום מחר". רמזים עקיפים: "בקרוב הכל יהיה שקט".</p></div>` },
-                    { id: 's_direct', title: 'שאלה ישירה', content: `<div class="content-area-wide fade-in"><h3>השאלה הישירה</h3><p>"אני דואג לך ולכן שואל באופן הכי ישיר: האם בכוונתך לשים קץ לחייך הלילה?". השאלה הזו אינה "מכניסה רעיונות", היא פורקת מתח ומצילה חיים.</p></div>` }
-                ]
-            },
-            {
-                id: 'depression_d',
-                title: 'דיכאון',
-                content: `<div class="content-area-wide fade-in"><h3>דיכאון בטקסט</h3><p><strong>שימוש במילים מוחלטות:</strong> "תמיד", "אף פעם", "כלום". האסטרטגיה היא לא להרים את הפונה אלא להיות איתו בתוך הקושי מבלי לבטל אותו.</p></div>`
-            }
-        ]
-    },
-    {
-        id: 'hidden_needs',
-        title: 'הצורך הסמוי',
-        icon: '🧊',
-        content: `<div class="content-area-wide fade-in"><h2>הצורך הסמוי של הפונה</h2><p>הבנת הצורך הסמוי מאפשרת למתנדב להפסיק להיות "פותר בעיות" ולהפוך ל"שותף למסע".</p></div>`,
-        subs: [
-            { id: 'v_n', title: 'נראות', content: `<div class="p-4"><h3>הצורך בנראות</h3><p>"הבט בי, אני קיים". נובע מהזנחה רגשית. מענה: שיקוף מפורט ועשיר.</p></div>` },
-            { id: 'c_n', title: 'שליטה', content: `<div class="p-4"><h3>הצורך בשליטה</h3><p>"אני הריבון במרחב שלי". מענה: החזרת בחירות קטנות בתוך השיחה.</p></div>` }
-        ]
-    },
-    {
-        id: 'architecture',
-        title: 'ארכיטקטורת השיחה',
-        icon: '🏗️',
-        content: `<div class="content-area-wide fade-in"><h2>שלבי השיחה הסהרית</h2><p>השיחה אינה חופשית, היא מובנית כדי להגן על המתנדב ועל הפונה.</p></div>`,
-        subs: [
-            { id: 's1', title: 'פתיחה (0-10 דק)', content: `<div class="p-4"><h3>בניית העריסה והחוזה</h3><p>ביסוס אמון, הבנת המציאות של הפונה ואבחון הצורך הסמוי.</p></div>` },
-            { id: 's2', title: 'שהייה בבור (10-30 דק)', content: `<div class="p-4"><h3>השלב ה"קדוש"</h3><p>התייחדות עם הכאב. לא רצים לפתרונות, פשוט נמצאים שם איתו בחשיכה.</p></div>` },
-            { id: 's3', title: 'סגירה (30-40 דק)', content: `<div class="p-4"><h3>נחיתה מבוקרת</h3><p>איסוף רסיסי הנפש, סיכום הכוחות והשארת דלת פתוחה למחר.</p></div>` }
-        ]
-    },
-    {
-        id: 'dna',
-        title: 'DNA השפה',
-        icon: '🧬',
-        content: `<div class="content-area-wide fade-in"><h2>חוקי התחביר של הרגש</h2><p>אלו הכלים שהופכים שיחה סתמית לשיחה סהרית.</p></div>`,
-        subs: [
-            { id: 'dna1', title: 'ניקוי ה"אני"', content: `<div class="p-4"><h3>המתנדב כמראה נקייה</h3><p>ויתור על דעות, עצות ושיתוף אישי. המרחב כולו שייך לפונה.</p></div>` },
-            { id: 'dna2', title: 'חובת הסייג', content: `<div class="p-4"><h3>אתיקה של אי-ידיעה</h3><p>שימוש במילים "אולי", "נדמה ש...". הפונה הוא המומחה היחיד לכאב שלו.</p></div>` },
-            { id: 'dna3', title: 'ההנהון הדיגיטלי (...)', content: `<div class="p-4"><h3>דופק השיחה הכתובה</h3><p>השימוש ב-3 נקודות מאט את הקצב ויוצר תחושה של נשימה ונוכחות חמה.</p></div>` }
-        ]
-    }
-];
-
-let currentSectionId = 'intro';
-let currentSubId = null;
-let currentItemId = null;
-
-function enterLearningMode() {
-    document.getElementById('landingPage').classList.add('hidden');
-    document.getElementById('learningMode').classList.remove('hidden');
-    renderSidebar();
-    showContent('intro');
-}
-
-function exitLearningMode() {
-    document.getElementById('learningMode').classList.add('hidden');
-    document.getElementById('landingPage').classList.remove('hidden');
-}
-
-function renderSidebar() {
-    const container = document.getElementById('navContainer');
-    container.innerHTML = '';
-    sectionsData.forEach(section => {
-        const isActive = currentSectionId === section.id;
-        const btn = document.createElement('button');
-        btn.className = `nav-btn w-full text-right p-4 transition-all flex items-center justify-between group ${isActive ? 'active' : ''}`;
-        btn.innerHTML = `
-            <div class="flex items-center gap-3">
-                <span class="text-xl">${section.icon}</span>
-                <span class="font-bold text-sm leading-tight">${section.title}</span>
-            </div>
-            ${section.subs ? `<span class="text-[10px] transition-transform ${isActive ? 'rotate-180' : ''}">▼</span>` : ''}
-        `;
-        btn.onclick = () => { 
-            currentSectionId = section.id; 
-            currentSubId = null; 
-            currentItemId = null;
-            renderSidebar(); 
-            showContent(section.id); 
-        };
-        container.appendChild(btn);
-
-        if (isActive && section.subs) {
-            const subBox = document.createElement('div');
-            subBox.className = "bg-gray-50/50 py-1 mx-2 border-r-2 border-[#3b4d36]/20 fade-in";
-            section.subs.forEach(sub => {
-                const isSubActive = currentSubId === sub.id;
-                const subBtn = document.createElement('button');
-                subBtn.className = `sub-nav-btn ${isSubActive ? 'active' : ''}`;
-                subBtn.innerText = sub.title;
-                subBtn.onclick = (e) => { 
-                    e.stopPropagation(); 
-                    currentSubId = sub.id; 
-                    currentItemId = null;
-                    renderSidebar(); 
-                    showContent(section.id, sub.id); 
-                };
-                subBox.appendChild(subBtn);
-
-                if (isSubActive && sub.items) {
-                    sub.items.forEach(item => {
-                        const itemBtn = document.createElement('button');
-                        itemBtn.className = `sub-sub-nav-btn ${currentItemId === item.id ? 'active' : ''}`;
-                        itemBtn.innerText = "• " + item.title;
-                        itemBtn.onclick = (e) => {
-                            e.stopPropagation();
-                            currentItemId = item.id;
-                            renderSidebar();
-                            showContent(section.id, sub.id, item.id);
-                        };
-                        subBox.appendChild(itemBtn);
-                    });
-                }
-            });
-            container.appendChild(subBox);
-        }
-    });
-}
-
-function showContent(secId, subId = null, itemId = null) {
-    const sec = sectionsData.find(s => s.id === secId);
-    let html = sec.content;
-    if (subId) {
-        const sub = sec.subs.find(s => s.id === subId);
-        html = itemId ? sub.items.find(i => i.id === itemId).content : sub.content;
-    }
-    document.getElementById('mainContent').innerHTML = `<div class="fade-in">${html}</div>`;
-}
-
-// התחלה בנחיתה
-window.onload = () => {
-    document.getElementById('landingPage').classList.remove('hidden');
-};
-</script>
 </body>
 </html>
