@@ -5,38 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מערכת ניתוח פדגוגי סה"ר - גרסה 4.0</title>
     <style>
-        :root { --sahar-blue: #1a73e8; --sahar-orange: #f39c12; --bg: #f8f9fa; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 950px; width: 100%; background: white; padding: 35px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 6px solid var(--sahar-blue); }
-        h1 { color: var(--sahar-blue); text-align: center; margin-bottom: 5px; }
+        :root { --sahar-blue: #1a73e8; --sahar-primary: #3b4d36; --sahar-orange: #f39c12; --bg: #fcfbf9; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .nav-bar { background: #ffffff; width: 100%; padding: 12px 20px; border-bottom: 2px solid #e5e7eb; display: flex; justify-content: flex-end; align-items: center; box-sizing: border-box; }
+        .back-btn { text-decoration: none; color: var(--sahar-primary); font-weight: bold; font-size: 16px; border: 2px solid var(--sahar-primary); padding: 8px 16px; border-radius: 12px; transition: 0.3s; background: #f1f5f0; }
+        .back-btn:hover { background: var(--sahar-primary); color: white; }
+        .container { max-width: 950px; width: 90%; background: white; padding: 35px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 6px solid var(--sahar-primary); margin: 40px 0; }
+        h1 { color: var(--sahar-primary); text-align: center; margin-bottom: 5px; font-weight: 900; }
         h3 { text-align: center; color: #555; font-weight: 400; margin-top: 0; }
-        .alert-box { background: #fff3e0; border-right: 5px solid var(--sahar-orange); padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 15px; line-height: 1.6; }
-        textarea { width: 100%; height: 280px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; box-sizing: border-box; background: #fafafa; transition: 0.3s; }
-        textarea:focus { border-color: var(--sahar-blue); outline: none; background: #fff; }
+        .alert-box { background: #fff3e0; border-right: 5px solid var(--sahar-orange); padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 15px; line-height: 1.6; text-align: right; }
+        textarea { width: 100%; height: 300px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; box-sizing: border-box; background: #fafafa; transition: 0.3s; text-align: right; direction: rtl; }
+        textarea:focus { border-color: var(--sahar-primary); outline: none; background: #fff; }
         .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         button { padding: 20px; border: none; border-radius: 8px; font-size: 19px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-main { background: var(--sahar-blue); color: white; grid-column: span 2; }
+        .btn-main { background: var(--sahar-primary); color: white; grid-column: span 2; }
         .btn-copy { background: #34a853; color: white; display: none; }
-        .btn-open { background: var(--sahar-orange); color: white; display: none; text-decoration: none; align-items: center; justify-content: center; }
-        button:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .btn-open { background: var(--sahar-orange); color: white; display: none; text-decoration: none; align-items: center; justify-content: center; text-align: center; }
+        button:hover { opacity: 0.9; transform: translateY(-2px); }
         .success { display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; text-align: center; margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
-<div style="background: #ffffff; padding: 12px 20px; border-bottom: 2px solid #e5e7eb; text-align: right; display: flex; justify-content: flex-end; align-items: center; font-family: system-ui, -apple-system, sans-serif;">
-    <a href="index.html" style="text-decoration: none; color: #3b4d36; font-weight: bold; font-size: 16px; border: 2px solid #3b4d36; padding: 8px 16px; border-radius: 12px; transition: 0.3s; background: #f1f5f0;">
-        🏠 חזרה למרכז הלמידה
-    </a>
+
+<div class="nav-bar">
+    <a href="index.html" class="back-btn">🏠 חזרה למרכז הלמידה</a>
 </div>
+
 <div class="container">
     <h1>🚀 מכין הניתוח הפדגוגי - סה"ר</h1>
-    <h3>גרסת הניתוח המפורט (ללא טבלאות)</h3>
+    <h3>גרסת אנונימיות מלאה (ללא טבלאות)</h3>
     
     <div class="alert-box">
-        <b>הנחיות קצרות:</b> הדבק את השיחה -> לחץ על הכפתור הכחול (הניקוי והכנת הפרומפט יבוצעו אוטומטית) -> העתק ועבור ל-Gemini. המערכת תסיר אוטומטית פרטים מזהים (שם, גיל, מגזר).
+        <b>הנחיות:</b> הדבק את השיחה -> לחץ על הכפתור הירוק -> המערכת תנקה הכל ותכין "חבילה" ל-Gemini. כל הפרטים המזהים יוסרו אוטומטית.
     </div>
 
-    <textarea id="rawInput" placeholder="הדבק כאן את לוג השיחה הגולמי..."></textarea>
+    <textarea id="rawInput" placeholder="הדבק כאן את לוג השיחה הגולמי מהצ'אט..."></textarea>
     
     <div class="btn-group">
         <button class="btn-main" onclick="prepareFinalAnalysis()">1. נקה והכן חבילת ניתוח</button>
@@ -44,7 +47,7 @@
         <a id="openBtn" class="btn-open" href="https://gemini.google.com/" target="_blank">3. פתח Gemini לניתוח</a>
     </div>
 
-    <div id="status" class="success">✅ החבילה מוכנה! השם והפרטים המזהים הוסרו. עכשיו פשוט הדבק ב-Gemini.</div>
+    <div id="status" class="success">✅ החבילה מוכנה ומועתקת! עכשיו פשוט הדבק ב-Gemini.</div>
 </div>
 
 <script>
@@ -54,68 +57,53 @@
         const input = document.getElementById('rawInput').value;
         if (!input.trim()) return alert("אנא הדבק שיחה.");
 
-        // --- שלב א: אנונימיזציה וניקוי לוג (למניעת מקרה "סמדר") ---
-        let callerName = "הפונה";
-       // --- שלב א: אנונימיזציה וניקוי לוג ---
-let callerName = "הפונה";
-// const nameMatch = input.match(/באיזה שם או כינוי לקרוא לך\?[\s\S]*\[Read\]\s*.*?\s+(.*?) (?:\s|$|,)/i);
-// if (nameMatch) callerName = nameMatch[1].trim();
+        // --- שלב א: אנונימיזציה וניקוי לוג ---
+        const cleanedLog = input
+            .replace(/\[\d{2}:\d{2}:\d{2}\]/g, '') // הסרת זמנים
+            .replace(/ מתנדב סה"ר/g, 'מתנדב')
+            .replace(/באיזה שם או כינוי לקרוא לך\?[\s\S]*?\[Read\]\s*\w+/g, 'באיזה שם או כינוי לקרוא לך? [השם הוסר]') // הגנה נוספת על השם
+            .replace(/^\s*[\r\n]/gm, '') // הסרת שורות ריקות
+            .trim();
 
-        let cleaned = input
-            .replace(/\[Sent\]|\[Read\]|\[Rich Content\]/gi, '') 
-            .replace(/מענה אוטומטי סה"ר[\s\S]*?(?=\d{2}:\d{2})/g, '') // ניקוי אינטרו
-            .replace(/Mar\.\s\d{4}.*?(\d{2}:\d{2}(?:am|pm))\s\d{2},/gi, '[$1]') // זיקוק זמן
-            .replace(new RegExp(callerName, 'gi'), "הפונה") 
-            .replace(/מתנדב.*?סה"ר|מתנדבת.*?סה"ר/g, "מתנדב/ת סה\"ר")
-            .replace(/בת\s\d{2}|בן\s\d{2}/g, "[גיל הוסר]") // הסרת גיל
-            .replace(/חרדי|חרדית|חילוני|חילונית|דתי|דתיה/g, "[מגזר הוסר]") // הסרת מגזר
-           .replace(/^\s*[\r\n]/gm, '')
-        .trim();
-} // <--- זה הסוגר שהיה חסר ושיתק את הדף!
+        // --- שלב ב: בניית הפרומפט המלא ---
+        const fullPrompt = `
+חוק בל יעבור (Strict PII Rule): חל עליך איסור מוחלט להשתמש בשמות פרטיים שמופיעים בשיחה הגולמית. עליך להתייחס לפונה אך ורק בתור "הפונה". 
 
-// --- שלב ב: הזרקת הפרומפט המעודכן ---
-const fullPrompt = `
-חוק בל יעבור (Strict PII Rule): חל עליך איסור מוחלט להשתמש בשמות פרטיים...
-הוראות הפעלת ניתוח שיחה
 תפקיד: אתה מדריך פדגוגי בכיר, וותיק ומעולה בעמותת סה"ר. 
 משימתך: ניתוח שיחת סיוע בצ'אט תוך הישענות מוחלטת על ה"אני מאמין" והפרוטוקול המקצועי של העמותה.
 אופן הניתוח: פדגוגי, טוטאלי ומפורט של כל השיחה מתחילתה ועד סופה ללא דילוג על שום שלב.
 
-### הוראת עיצוב קריטית: אין להשתמש בטבלאות בשום פנים ואופן. הניתוח לכל יחידת תגובה יוצג כרשימה של סעיפים (Bullet Points) רציפים, המאפשרים פירוט מעמיק. אל תצמצם את המילים בגלל מגבלות עיצוב. ###
+### הוראת עיצוב קריטית: אין להשתמש בטבלאות בשום פנים ואופן. הניתוח לכל יחידת תגובה יוצג כרשימה של סעיפים (Bullet Points) רציפים, המאפשרים פירוט מעמיק. ###
 
 מבנה יחידת התגובה (חובה להשתמש בפורמט זה):
-יחידת תגובה (מספר...)
-* סטטוס זמן שיחה: [למשל: דקה 20 לשיחה / התראה: דקה 35 - נדרש להתכנס לסיום].
-* הודעת הפונה ([שעה]): העתק מילה במילה.
-* תגובת המתנדב ([שעה]): העתק מילה במילה.
-* זמן תגובה: [כמה דקות עברו]. (מעל 3 דקות ללא נוכחות = חריגה).
+יחידת תגובה [מספר]
+* הודעת הפונה: העתק מילה במילה.
+* תגובת המתנדב: העתק מילה במילה.
 * סיווג איכות התגובה: [מצוין / טוב / מספק / לא מספק / טעות].
 * דיוק בשפה הסה"רית: נתח לאור כללי השפה (ניקוי האני, סייג, ללא שאלות).
 * מענה לצורך: נתח צורך סמוי לפי התוכן הגלוי.
-* הצעת תגובה חלופית: תגובה איכותית, ללא סימני שאלה (?), חובת סייג (אולי, נדמה).
-* הסבר לאיכות התגובה החלופית: מדוע היא עדיפה.
-* ניהול הרצף: שלב בשיחה (פתיחה/בור/איסוף), שהייה בבור (20 דק'), זיהוי נקודת יציאה.
+* הצעת תגובה חלופית: תגובה איכותית, ללא סימני שאלה (?), חובת סייג.
+* ניהול הרצף: שלב בשיחה (פתיחה/בור/איסוף).
 
-כלל ברזל: אין לנתח או לפרש את תוכן דברי הפונה אלא רק מנקודת מבט של הבנת המצוקה והצורך.
-
-סיכום פדגוגי סופי (לאחר כל היחידות):
-* אבחון מאפייני האישיות והמצוקה של הפונה (מבט על).
-* משוב מסכם למתנדב: נקודות לשימור, נקודות לשיפור, מבט על.
-* ציון סופי (1-10) והסבר כללי.
-
-בסיס ידע (10 הדיברות):
-- הפונה במרכז (ניקוי האני). - הזמנה ולא חקירה (ללא ?). - כוחו של הספק (הסייג). - שב איתו בבור (תיקוף והעמקה). - החצנת הרגש (מטאפורות). - ללא עצות.
+סיכום פדגוגי סופי:
+* אבחון מאפייני המצוקה של הפונה (מבט על).
+* משוב מסכם למתנדב: נקודות לשימור ושיפור.
+* ציון סופי (1-10) והסבר.
 
 הנה השיחה לניתוח (עברה אנונימיזציה):
 -------------------------------------------
-${cleaned}
+${cleanedLog}
 -------------------------------------------
-נתח כעת את השיחה מתחילתה ועד סופה. זכור: רשימה מפורטת בלבד, ללא טבלאות.
+נתח כעת את השיחה מתחילתה ועד סופה ברשימה מפורטת בלבד.
 `;
 
         finalPackage = fullPrompt;
+        
+        // הצגת כפתורי ההמשך
         document.getElementById('copyBtn').style.display = 'block';
         document.getElementById('openBtn').style.display = 'flex';
+        
+        // העתקה אוטומטית לזיכרון
         copyToClipboard();
     }
 
