@@ -1,0 +1,35 @@
+:root { --sahar-primary: #3b4d36; --sahar-bg: #fcfbf9; }
+
+body { background-color: var(--sahar-bg); color: #111827; font-family: system-ui, sans-serif; text-align: right; margin: 0; overflow: hidden; }
+
+/* עיצוב כפתורי הענק בדף הנחיתה */
+.big-card { 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    border: 2px solid #e5e7eb; 
+    cursor: pointer; 
+    text-decoration: none; 
+}
+.big-card:hover { 
+    transform: translateY(-10px); 
+    border-color: var(--sahar-primary); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); 
+}
+
+/* עיצוב אזור התוכן והמלל */
+.content-area-wide { line-height: 1.95; font-size: 1.15rem; max-width: 1000px; margin: 0 auto; padding: 2rem; }
+.content-area-wide h2 { font-size: 2.4rem; font-weight: 900; color: var(--sahar-primary); margin-bottom: 1rem; }
+.content-area-wide h3 { font-size: 1.8rem; font-weight: 800; color: var(--sahar-primary); margin-top: 1.5rem; }
+
+/* טבלאות וציטוטים */
+.sahar-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; border-radius: 1rem; overflow: hidden; }
+.sahar-table th { background-color: var(--sahar-primary); color: white; padding: 1rem; text-align: right; }
+.sahar-table td { padding: 1rem; border-bottom: 1px solid #e5e7eb; background-color: white; }
+.quote-block { border-right: 6px solid var(--sahar-primary); padding: 1.5rem; background: #f1f5f0; font-style: italic; margin: 2rem 0; font-weight: bold; }
+
+/* ניווט צד */
+.nav-btn.active { background-color: #f1f5f0; color: var(--sahar-primary); border-right: 4px solid var(--sahar-primary); font-weight: bold; }
+.sub-nav-btn { font-size: 0.85rem; padding: 0.7rem 2.5rem 0.7rem 1rem; width: 100%; text-align: right; display: block; color: #4b5563; }
+.sub-nav-btn.active { color: var(--sahar-primary); font-weight: 800; background-color: #f9fafb; border-right: 2px solid var(--sahar-primary); }
+
+.fade-in { animation: fadeIn 0.4s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
