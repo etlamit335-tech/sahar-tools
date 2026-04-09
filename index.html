@@ -22,12 +22,19 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); 
         }
     </style>
+    <script>
+        // הגנת סיסמה לכניסה למרכז הלמידה
+        const pass = prompt("דף פנימי מוגן. אנא הזן סיסמה:");
+        if (pass !== "2026") { // בחר כאן את הסיסמה שלך
+            document.documentElement.innerHTML = "<body style='display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;'><h1>גישה חסומה.</h1></body>";
+            window.stop();
+        }
+    </script>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-10 text-center">
     <div class="mb-12">
-        <span class="text-9xl text-[#3b4d36] block mb-6">☾</span>
         <h1 class="text-5xl md:text-7xl font-black text-gray-900 leading-tight">ברוכים הבאים למרכז הלמידה</h1>
-        <p class="text-2xl text-gray-500 mt-4 font-bold italic">עמותת סה"ר - סיוע והקשבה ברשת</p>
+        <p class="text-2xl text-gray-500 mt-4 font-bold italic">סיוע לפונים במצוקה</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-7xl">
