@@ -2,6 +2,18 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <script>
+        // בודק אם כבר נכנסת עם סיסמה בדף הבית
+        if (sessionStorage.getItem('authenticated') !== 'true') {
+            // אם לא - מחזיר אותך לדף הבית כדי שתקיש סיסמה
+            window.location.href = "index.html";
+        }
+    </script>
+    
+    </head>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מערכת ניתוח פדגוגי - גרסה 4.0</title>
     <script>
