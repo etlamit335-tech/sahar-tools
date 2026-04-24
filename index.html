@@ -30,8 +30,23 @@
             window.stop();
         }
     </script>
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // בדיקה אם המשתמש כבר הזדהה בסשן הנוכחי
+        if (sessionStorage.getItem('authenticated') !== 'true') {
+            const pass = prompt("דף פנימי מוגן. אנא הזן סיסמה:");
+            if (pass === "3357") {
+                // שמירת האישור בזיכרון הדפדפן ללשונית הזו
+                sessionStorage.setItem('authenticated', 'true');
+            } else {
+                document.documentElement.innerHTML = "<body style='display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; background:#fcfbf9;'><h1>גישה חסומה.</h1></body>";
+                window.stop();
+            }
+        }
+    </script>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-10 text-center">
+    <body class="min-h-screen flex flex-col items-center justify-center p-10 text-center">
     <div class="mb-12">
         <h1 class="text-5xl md:text-7xl font-black text-gray-900 leading-tight">ברוכים הבאים למרכז הלמידה</h1>
         <p class="text-2xl text-gray-500 mt-4 font-bold italic">סיוע לפונים במצוקה</p>
