@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מערכת ניתוח פדגוגי סה"ר - גרסה 4.0</title>
+    <title>מערכת ניתוח פדגוגי - גרסה 4.0</title>
+    <script>
+        // הגנת סיסמה
+        const pass = prompt("דף פנימי מוגן. אנא הזן סיסמה:");
+        if (pass !== "3357") {
+            document.documentElement.innerHTML = "<body style='display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;'><h1>גישה חסומה.</h1></body>";
+            window.stop();
+        }
+    </script>
     <style>
-        :root { --sahar-blue: #1a73e8; --sahar-primary: #3b4d36; --sahar-orange: #f39c12; --bg: #fcfbf9; }
+        :root { --primary: #3b4d36; --accent: #f39c12; --bg: #fcfbf9; }
         body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
         .nav-bar { background: #ffffff; width: 100%; padding: 12px 20px; border-bottom: 2px solid #e5e7eb; display: flex; justify-content: flex-end; align-items: center; box-sizing: border-box; }
-        .back-btn { text-decoration: none; color: var(--sahar-primary); font-weight: bold; font-size: 16px; border: 2px solid var(--sahar-primary); padding: 8px 16px; border-radius: 12px; transition: 0.3s; background: #f1f5f0; }
-        .back-btn:hover { background: var(--sahar-primary); color: white; }
-        .container { max-width: 950px; width: 90%; background: white; padding: 35px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 6px solid var(--sahar-primary); margin: 40px 0; }
-        h1 { color: var(--sahar-primary); text-align: center; margin-bottom: 5px; font-weight: 900; }
+        .back-btn { text-decoration: none; color: var(--primary); font-weight: bold; font-size: 16px; border: 2px solid var(--primary); padding: 8px 16px; border-radius: 12px; transition: 0.3s; background: #f1f5f0; }
+        .back-btn:hover { background: var(--primary); color: white; }
+        .container { max-width: 950px; width: 90%; background: white; padding: 35px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 6px solid var(--primary); margin: 40px 0; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 5px; font-weight: 900; }
         h3 { text-align: center; color: #555; font-weight: 400; margin-top: 0; }
-        .alert-box { background: #fff3e0; border-right: 5px solid var(--sahar-orange); padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 15px; line-height: 1.6; text-align: right; }
+        .alert-box { background: #fff3e0; border-right: 5px solid var(--accent); padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 15px; line-height: 1.6; text-align: right; }
         textarea { width: 100%; height: 300px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; box-sizing: border-box; background: #fafafa; transition: 0.3s; text-align: right; direction: rtl; }
-        textarea:focus { border-color: var(--sahar-primary); outline: none; background: #fff; }
+        textarea:focus { border-color: var(--primary); outline: none; background: #fff; }
         .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         button { padding: 20px; border: none; border-radius: 8px; font-size: 19px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-main { background: var(--sahar-primary); color: white; grid-column: span 2; }
+        .btn-main { background: var(--primary); color: white; grid-column: span 2; }
         .btn-copy { background: #34a853; color: white; display: none; }
-        .btn-open { background: var(--sahar-orange); color: white; display: none; text-decoration: none; align-items: center; justify-content: center; text-align: center; }
+        .btn-open { background: var(--accent); color: white; display: none; text-decoration: none; align-items: center; justify-content: center; text-align: center; }
         button:hover { opacity: 0.9; transform: translateY(-2px); }
         .success { display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; text-align: center; margin-top: 20px; font-weight: bold; }
     </style>
@@ -32,11 +40,11 @@
 </div>
 
 <div class="container">
-    <h1>🚀 מכין הניתוח הפדגוגי - סה"ר</h1>
-    <h3>גרסת אנונימיות מלאה (ללא טבלאות)</h3>
+    <h1>🚀 מכין הניתוח הפדגוגי</h1>
+    <h3>אנונימיות מלאה וניתוח מבוסס מודל הסיוע</h3>
     
     <div class="alert-box">
-        <b>הנחיות:</b> הדבק את השיחה -> לחץ על הכפתור הירוק -> המערכת תנקה הכל ותכין "חבילה" ל-Gemini. כל הפרטים המזהים יוסרו אוטומטית.
+        <b>הנחיות:</b> הדבק את השיחה -> לחץ על הכפתור הירוק -> המערכת תנקה פרטים מזהים ותכין "חבילה" ל-Gemini.
     </div>
 
     <textarea id="rawInput" placeholder="הדבק כאן את לוג השיחה הגולמי מהצ'אט..."></textarea>
@@ -61,16 +69,16 @@
         const cleanedLog = input
             .replace(/\[\d{2}:\d{2}:\d{2}\]/g, '') // הסרת זמנים
             .replace(/ מתנדב סה"ר/g, 'מתנדב')
-            .replace(/באיזה שם או כינוי לקרוא לך\?[\s\S]*?\[Read\]\s*\w+/g, 'באיזה שם או כינוי לקרוא לך? [השם הוסר]') // הגנה נוספת על השם
+            .replace(/באיזה שם או כינוי לקרוא לך\?[\s\S]*?\[Read\]\s*\w+/g, 'באיזה שם או כינוי לקרוא לך? [השם הוסר]') 
             .replace(/^\s*[\r\n]/gm, '') // הסרת שורות ריקות
             .trim();
 
-        // --- שלב ב: בניית הפרומפט המלא ---
+        // --- שלב ב: בניית הפרומפט המלא (שמרתי על הלוגיקה המקורית שלך) ---
         const fullPrompt = `
 חוק בל יעבור (Strict PII Rule): חל עליך איסור מוחלט להשתמש בשמות פרטיים שמופיעים בשיחה הגולמית. עליך להתייחס לפונה אך ורק בתור "הפונה". 
 
-תפקיד: אתה מדריך פדגוגי בכיר, וותיק ומעולה בעמותת סה"ר. 
-משימתך: ניתוח שיחת סיוע בצ'אט תוך הישענות מוחלטת על ה"אני מאמין" והפרוטוקול המקצועי של העמותה.
+תפקיד: אתה מדריך פדגוגי בכיר, וותיק ומעולה המומחה בשפת הסיוע הרגשי. 
+משימתך: ניתוח שיחת סיוע בצ'אט תוך הישענות מוחלטת על הפרוטוקול המקצועי של שפת הסיוע.
 אופן הניתוח: פדגוגי, טוטאלי ומפורט של כל השיחה מתחילתה ועד סופה ללא דילוג על שום שלב.
 
 ### הוראת עיצוב קריטית: אין להשתמש בטבלאות בשום פנים ואופן. הניתוח לכל יחידת תגובה יוצג כרשימה של סעיפים (Bullet Points) רציפים, המאפשרים פירוט מעמיק. ###
@@ -80,7 +88,7 @@
 * הודעת הפונה: העתק מילה במילה.
 * תגובת המתנדב: העתק מילה במילה.
 * סיווג איכות התגובה: [מצוין / טוב / מספק / לא מספק / טעות].
-* דיוק בשפה הסה"רית: נתח לאור כללי השפה (ניקוי האני, סייג, ללא שאלות).
+* דיוק בשפת הסיוע: נתח לאור כללי השפה (ניקוי האני, סייג, ללא שאלות).
 * מענה לצורך: נתח צורך סמוי לפי התוכן הגלוי.
 * הצעת תגובה חלופית: תגובה איכותית, ללא סימני שאלה (?), חובת סייג.
 * ניהול הרצף: שלב בשיחה (פתיחה/בור/איסוף).
@@ -90,7 +98,7 @@
 * משוב מסכם למתנדב: נקודות לשימור ושיפור.
 * ציון סופי (1-10) והסבר.
 
-הנה השיחה לניתוח (עברה אנונימיזציה):
+הנה השיחה לניתוח:
 -------------------------------------------
 ${cleanedLog}
 -------------------------------------------
@@ -103,13 +111,23 @@ ${cleanedLog}
         document.getElementById('copyBtn').style.display = 'block';
         document.getElementById('openBtn').style.display = 'flex';
         
-        // העתקה אוטומטית לזיכרון
+        // ניסיון העתקה אוטומטית
         copyToClipboard();
     }
 
     function copyToClipboard() {
         if (!finalPackage) return;
         navigator.clipboard.writeText(finalPackage).then(() => {
+            document.getElementById('status').style.display = 'block';
+            document.getElementById('copyBtn').innerText = "✅ הועתק";
+        }).catch(err => {
+            // גיבוי למקרה של חסימת API
+            const el = document.createElement('textarea');
+            el.value = finalPackage;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
             document.getElementById('status').style.display = 'block';
         });
     }
