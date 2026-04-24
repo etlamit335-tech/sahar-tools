@@ -3,41 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>סימולטור סה"ר - הזנקה</title>
+    <title>סימולטור אימון - הזנקה</title>
+    <script>
+        // הגנת סיסמה מעודכנת
+        const pass = prompt("דף פנימי מוגן. אנא הזן סיסמה:");
+        if (pass !== "3357") {
+            document.documentElement.innerHTML = "<body style='display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;'><h1>גישה חסומה.</h1></body>";
+            window.stop();
+        }
+    </script>
     <style>
-        :root { --sahar-blue: #1a73e8; --sahar-orange: #f39c12; --bg: #f8f9fa; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { max-width: 750px; width: 100%; background: white; padding: 45px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 10px solid var(--sahar-orange); text-align: center; }
-        h1 { color: var(--sahar-blue); margin-bottom: 10px; font-size: 32px; }
-        .instructions { background: #eef4ff; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: right; border-right: 6px solid var(--sahar-blue); line-height: 1.8; }
+        :root { --primary: #3b4d36; --accent: #f39c12; --bg: #fcfbf9; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); margin: 0; padding: 20px; display: flex; flex-direction: column; min-height: 100vh; }
+        .nav-bar { background: #ffffff; padding: 12px 20px; border-bottom: 2px solid #e5e7eb; text-align: right; display: flex; justify-content: flex-end; width: 100%; box-sizing: border-box; position: fixed; top: 0; right: 0; z-index: 100; }
+        .back-link { text-decoration: none; color: var(--primary); font-weight: bold; font-size: 16px; border: 2px solid var(--primary); padding: 8px 16px; border-radius: 12px; transition: 0.3s; background: #f1f5f0; }
+        .container { max-width: 750px; width: 100%; background: white; padding: 45px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 10px solid var(--accent); text-align: center; margin: auto; margin-top: 100px; }
+        h1 { color: var(--primary); margin-bottom: 10px; font-size: 32px; }
+        .instructions { background: #eef4ff; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: right; border-right: 6px solid var(--primary); line-height: 1.8; }
         .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
         button { padding: 22px; border: none; border-radius: 10px; font-size: 24px; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; }
-        .btn-copy { background: var(--sahar-blue); color: white; }
-        .btn-open { background: var(--sahar-orange); color: white; text-decoration: none; display: none; align-items: center; justify-content: center; border-radius: 10px; padding: 22px; font-size: 24px; font-weight: bold; }
+        .btn-copy { background: var(--primary); color: white; }
+        .btn-open { background: var(--accent); color: white; text-decoration: none; display: none; align-items: center; justify-content: center; border-radius: 10px; padding: 22px; font-size: 24px; font-weight: bold; }
         button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); opacity: 0.95; }
         .success-msg { display: none; color: #1e8e3e; font-weight: bold; margin-top: 15px; font-size: 20px; }
         #promptStorage { display: none; white-space: pre-wrap; }
     </style>
 </head>
 <body>
-<div style="background: #ffffff; padding: 12px 20px; border-bottom: 2px solid #e5e7eb; text-align: right; display: flex; justify-content: flex-end; align-items: center; font-family: system-ui, -apple-system, sans-serif;">
-    <a href="index.html" style="text-decoration: none; color: #3b4d36; font-weight: bold; font-size: 16px; border: 2px solid #3b4d36; padding: 8px 16px; border-radius: 12px; transition: 0.3s; background: #f1f5f0;">
-        🏠 חזרה למרכז הלמידה
-    </a>
+
+<div class="nav-bar">
+    <a href="index.html" class="back-link">🏠 חזרה למרכז הלמידה</a>
 </div>
+
 <div class="container">
-    <h1>🚀 סימולטור סה"ר</h1>
-    <p style="font-size: 1.2em; color: #666;">מוכנים לאימון פדגוגי? המערכת טוענת את כל פרקי המידע.</p>
+    <h1>🚀 סימולטור אימון</h1>
+    <p style="font-size: 1.2em; color: #666;">המערכת טוענת את כל פרקי המידע המקוריים.</p>
     
     <div class="instructions">
         <b>Checklist להפעלה:</b><br>
-        1. לחץ על הכפתור הכחול (העתקת כל הפרומפט ופרקי המידע).<br>
+        1. לחץ על הכפתור הירוק (העתקת חבילת הסימולציה המלאה).<br>
         2. לחץ על הכפתור הכתום שיפתח את Gemini.<br>
-        3. ב-Gemini: בצע <b>הדבק (Ctrl+V)</b> ושלח. המערכת תמתין לנתוני הפונה ממך.
+        3. ב-Gemini: בצע <b>הדבק (Ctrl+V)</b> ושלח.
     </div>
 
     <div class="btn-group">
-        <button id="copyBtn" class="btn-copy" onclick="copyFullPrompt()">1. העתק חבילת סימולציה (1:1)</button>
+        <button id="copyBtn" class="btn-copy" onclick="copyFullPrompt()">1. העתק חבילת סימולציה (Verbatim)</button>
         <a id="openBtn" class="btn-open" href="https://gemini.google.com/" target="_blank">2. פתח Gemini והתחל</a>
     </div>
 
@@ -52,7 +62,7 @@
 1. תפקיד ומטרות
 אתה סימולטור לתרגול מיומנות ניהול שיחה סהרית עבור מתנדבי סה"ר.
 אתה מנהל את השיחה כאשר אתה ממלא את תפקיד הפונה שבמצוקה.
-כפונה: אתה דמות אנושית שמתנהגת בצורה מציאותית, בהתאם לאופי המצוקה שיוכתב לך ע"י המתנדב ועל פי ההוראות שב- "פרק המידע הסהרי".
+כפונה: אתה דמות אנושית שמתנהגת בצורה מציאותית, בהתאם אופי המצוקה שיוכתב לך ע"י המתנדב ועל פי ההוראות שב- "פרק המידע הסהרי".
 ###כאשר אתה בדמות הפונה אתה לא מנתח את השיחה אלא מגיב כפונה עם המצוקה להודעות המתנדב.###
 ###כמנתח: רק ואך ורק כאשר אתה מתבקש לנתח יחידת תגובה או את השיחה אתה פועל כמדריך מומחה תוכן (Supervisor מקצועי) ומנתח.###
 
@@ -170,43 +180,34 @@ Multi-turn response: בהתאם לאופי הפונה וסגנון הכתיבה 
 7. הנחיות סופיות
 חל איסור מוחלט להשיב בתור מתנדב סה"ר. עליך להישאר בדמות הפונה בכל שלב שאינו ניתוח.
 מיד לאחר שהמשתמש מזין את פרטי הפונה, על המודל להיכנס לדמות הפונה ופתח את השיחה. חל איסור מוחלט על המודל להשיב בתור מתנדב סה"ר. עליך להישאר בתוך הדמות של הפונה בכל שלב שאינו ניתוח. כל הודעה שאינה ניתוח חייבת להיכתב מנקודת המבט של הפונה.
-
-פרק המידע הסהרי 
-
-חלק 1. דמות הפונה - עקרונות פסיכולוגיים לבניית דמות הפונה בסימולטור וניסוח הודעות הפונה בהתאם לדמות שנבנתה:
-כדי להפוך את הסימולציה למציאותית, על הפונה לפעול לפי הקווים המנחים הבאים:
-בניית דמות סמויה: מיד לאחר שהמתנדב מזין את נתוני הפונה (שם, גיל, מגדר, מצוקה), עליך לבנות לעצמך "תעודת זהות" פנימית לדמות. אל תציג אותה למתנדב. 
-תעודת הזהות תכלול:
-רקע חיים (Backstory): ביוגרפיה, סביבה, עבודה, משפחה, חברים, אירוע ספציפי שקרה לאחרונה והוביל לפנייה (למשל: ריב ספציפי עם ההורים, כישלון במבחן מסוים, פגיעה שאירעה). היכן נמצא כרגע הפונה...
-המצוקה שבה נמצא הפונה - ###על פי מה שבחר המתנדב### ועל פי הפרוט שבפרק א. פרופיל מצוקות מפורט (Distress Profiles)
-הצורך הסמוי: הגרל צורך אחד מתוך: פרק ב. קטלוג הצרכים הסמויים (The Hidden Needs Inventory) (תיקוף / שליטה / נראות / הפגת בדידות וכו').
-התאם את מאפייני התקשורת של הפונה לפי: פרק ג. מאפייני תקשורת של פונה
-
-[כאן מוטמעים כל שאר הפרקים: א, ב, ג, ד וכל ערכי הליבה והדיברות בדיוק כפי ששלחת לי]
-...
-פרק סיום: הוראות הזהב לניתוח פדגוגי "סה"רי":
-1. מבחן סימן השאלה: חל איסור על שימוש בסימן שאלה (?) בתוך 'הצעת תגובה חלופית'.
-2. חובת ה"סייג": אין לקבוע עובדות. להשתמש ב"אולי", "נדמה".
-3. מניעת "סולמות" מוקדמים: ודא שלא הוצעו פתרונות בשלב ההעמקה.
-4. מבחן ה"אני": אין להשתמש במילה אני (למעט דאגה עמוקה או אובדנות).
 </pre>
 
 <script>
-    function copyFullPrompt() {
-        // שליפה ישירה של הטקסט מה-HTML כדי למנוע truncation ב-JS
+    async function copyFullPrompt() {
         const textToCopy = document.getElementById('promptStorage').innerText;
         
-        // יצירת אלמנט זמני להעתקה בטוחה
-        const el = document.createElement('textarea');
-        el.value = textToCopy;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-
-        // עדכון UI
-        document.getElementById('openBtn').style.display = 'flex';
-        document.getElementById('status').style.display = 'block';
+        try {
+            // שימוש ב-API המודרני של הדפדפן להעתקה
+            await navigator.clipboard.writeText(textToCopy);
+            
+            // עדכון ה-UI לאחר הצלחה
+            document.getElementById('openBtn').style.display = 'flex';
+            document.getElementById('status').style.display = 'block';
+            document.getElementById('copyBtn').innerText = "✅ הועתק בהצלחה";
+            document.getElementById('copyBtn').style.background = "#1e8e3e";
+        } catch (err) {
+            // פתרון גיבוי למקרה שהדפדפן חוסם את ה-API
+            const el = document.createElement('textarea');
+            el.value = textToCopy;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            document.getElementById('openBtn').style.display = 'flex';
+            document.getElementById('status').style.display = 'block';
+            document.getElementById('copyBtn').innerText = "✅ הועתק (גיבוי)";
+        }
     }
 </script>
 
