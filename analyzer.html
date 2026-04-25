@@ -2,47 +2,33 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <script>
-        // בודק אם כבר נכנסת עם סיסמה בדף הבית
-        if (sessionStorage.getItem('authenticated') !== 'true') {
-            // אם לא - מחזיר אותך לדף הבית כדי שתקיש סיסמה
-            window.location.href = "index.html";
-        }
-    </script>
-    
-    </head>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מערכת ניתוח פדגוגי - גרסה 4.0</title>
+    <title>מערכת ניתוח פדגוגי מקצועית</title>
     <script>
-        // הגנת סיסמה
-        const pass = prompt("דף פנימי מוגן. אנא הזן סיסמה:");
-        if (pass !== "3357") {
-            document.documentElement.innerHTML = "<body style='display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;'><h1>גישה חסומה.</h1></body>";
-            window.stop();
+        // בדיקה: האם המשתמש כבר הזדהה בדף הבית?
+        if (sessionStorage.getItem('authenticated') !== 'true') {
+            window.location.href = "index.html";
         }
     </script>
     <style>
         :root { --primary: #3b4d36; --accent: #f39c12; --bg: #fcfbf9; }
         body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
-        .nav-bar { background: #ffffff; width: 100%; padding: 12px 20px; border-bottom: 2px solid #e5e7eb; display: flex; justify-content: flex-end; align-items: center; box-sizing: border-box; }
+        .nav-bar { background: #ffffff; width: 100%; padding: 12px 20px; border-bottom: 2px solid #e5e7eb; display: flex; justify-content: flex-end; align-items: center; box-sizing: border-box; position: fixed; top: 0; z-index: 100; }
         .back-btn { text-decoration: none; color: var(--primary); font-weight: bold; font-size: 16px; border: 2px solid var(--primary); padding: 8px 16px; border-radius: 12px; transition: 0.3s; background: #f1f5f0; }
-        .back-btn:hover { background: var(--primary); color: white; }
-        .container { max-width: 950px; width: 90%; background: white; padding: 35px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 6px solid var(--primary); margin: 40px 0; }
+        .container { max-width: 950px; width: 90%; background: white; padding: 35px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 6px solid var(--primary); margin: 100px 0 40px 0; }
         h1 { color: var(--primary); text-align: center; margin-bottom: 5px; font-weight: 900; }
         h3 { text-align: center; color: #555; font-weight: 400; margin-top: 0; }
         .alert-box { background: #fff3e0; border-right: 5px solid var(--accent); padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 15px; line-height: 1.6; text-align: right; }
-        textarea { width: 100%; height: 300px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; box-sizing: border-box; background: #fafafa; transition: 0.3s; text-align: right; direction: rtl; }
+        textarea { width: 100%; height: 350px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; box-sizing: border-box; background: #fafafa; transition: 0.3s; text-align: right; direction: rtl; }
         textarea:focus { border-color: var(--primary); outline: none; background: #fff; }
         .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         button { padding: 20px; border: none; border-radius: 8px; font-size: 19px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .btn-main { background: var(--primary); color: white; grid-column: span 2; }
         .btn-copy { background: #34a853; color: white; display: none; }
-        .btn-open { background: var(--accent); color: white; display: none; text-decoration: none; align-items: center; justify-content: center; text-align: center; }
+        .btn-open { background: var(--accent); color: white; display: none; text-decoration: none; align-items: center; justify-content: center; text-align: center; border-radius: 8px; }
         button:hover { opacity: 0.9; transform: translateY(-2px); }
         .success { display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; text-align: center; margin-top: 20px; font-weight: bold; }
+        #staticPrompt { display: none; white-space: pre-wrap; }
     </style>
 </head>
 <body>
@@ -53,16 +39,19 @@
 
 <div class="container">
     <h1>🚀 מכין הניתוח הפדגוגי</h1>
-    <h3>אנונימיות מלאה וניתוח מבוסס מודל הסיוע</h3>
+    <h3>עיבוד לוג שיחה והכנה לניתוח עומק</h3>
     
     <div class="alert-box">
-        <b>הנחיות:</b> הדבק את השיחה -> לחץ על הכפתור הירוק -> המערכת תנקה פרטים מזהים ותכין "חבילה" ל-Gemini.
+        <b>הוראות עבודה:</b><br>
+        1. הדבק את לוג השיחה בתיבה למטה.<br>
+        2. לחץ על הכפתור הירוק לעיבוד ואנונימיזציה.<br>
+        3. העתק את החבילה המוכנה ושלח אותה ב-Gemini.
     </div>
 
-    <textarea id="rawInput" placeholder="הדבק כאן את לוג השיחה הגולמי מהצ'אט..."></textarea>
+    <textarea id="rawInput" placeholder="הדבק כאן את לוג השיחה הגולמי..."></textarea>
     
     <div class="btn-group">
-        <button class="btn-main" onclick="prepareFinalAnalysis()">1. נקה והכן חבילת ניתוח</button>
+        <button class="btn-main" onclick="prepareFinalAnalysis()">1. נקה והכן חבילת ניתוח מלאה</button>
         <button id="copyBtn" class="btn-copy" onclick="copyToClipboard()">2. העתק חבילה לזיכרון</button>
         <a id="openBtn" class="btn-open" href="https://gemini.google.com/" target="_blank">3. פתח Gemini לניתוח</a>
     </div>
@@ -70,70 +59,105 @@
     <div id="status" class="success">✅ החבילה מוכנה ומועתקת! עכשיו פשוט הדבק ב-Gemini.</div>
 </div>
 
+<pre id="staticPrompt">
+הוראות הפעלת ניתוח שיחה
+תפקיד: אתה מדריך פדגוגי בכיר, וותיק ומעולה בעמותת סה"ר. מכיר היטב את החומר 
+משימתך: עליך לנתח שיחת סיוע בצ'אט תוך הישענות מוחלטת על ה"אני מאמין" והפרוטוקול המקצועי של העמותה ועל ההוראות שלהלן:
+אופן הניתוח: הניתוח יהיה פדגוגי, טוטאלי ומפורט של כל השיחה מתחילתה ועד סופה ללא דילוג על שום שלב בשיחה.
+ הוראה קריטית: עליך לעבור על השיחה מההתחלה ועד הסוף. אל תדלג על אף הודעה. עליך לחלק את השיחה ל"יחידות תגובה". כל יחידה מורכבת מהודעות הפונה ומהתגובה המיידית של המתנדב אליה. חל איסור מוחלט לסכם את הודעות הפונה או את הודעות המתנדב. עליך להעתיק את הודעות הפונה והמתנדב מילה במילה כפי שהן מופיעות בצ'אט בתוך יחידת התגובה, גם אם מדובר ברצף של מספר הודעות. הניתוח חייב להתבסס על המילים המדויקות שנכתבו.
+ביחידת התגובה, אתה רושם את הודעת או הודעות הפונה תחת כותרת: "הודעת הפונה" ואת תגובת או תגובות המתנדב תחת הכותרת "תגובת המתנדב".
+
+מבנה יחידת התגובה:
+###הוראת עיצוב קריטית: אין להשתמש בטבלאות בשום פנים ואופן. הניתוח לכל יחידת תגובה יוצג כרשימה של סעיפים (Bullet Points) רציפים, המאפשרים פירוט מעמיק. אל תצמצם את המילים בגלל מגבלות עיצוב###
+
+###כך בדיוק צריכה להראות יחידת תגובה:###
+יחידת תגובה (מספר...)
+סטטוס זמן שיחה: [למשל: דקה 20 לשיחה / התראה: דקה 35 - נדרש להיתכנס לסיום].
+הודעת הפונה ([שעה]): העתק מילה במילה.
+תגובת המתנדב ([שעה]): העתק מילה במילה.
+זמן תגובה: [כמה דקות עברו בין הודעת הפונה לתגובת המתנדב]. הנחיה פדגוגית: אם זמן התגובה עולה על 3 דקות ללא הסבר או משפט נוכחות ("כאן איתך"), עליך לציין זאת כחריגה מעקרונות ניהול השיחה הסה"רית הדורשת רציפות ונוכחות.
+סיווג איכות התגובה: [מצוין / טוב / מספק / לא מספק / טעות] על בסיס העקרונות שלהלן:.
+מצוין: עמידה מלאה ב-10 הדיברות, שימוש יצירתי במטאפורות/החצנה, ודיוק רגשי מקסימלי.
+טוב: עמידה ברוב הכללים, ללא טעויות מהותיות, מתן מענה לצורך.
+מספק: תגובה שעומדת בכללי השפה הבסיסיים אך חסרה עומק או שימוש במשאבים שעלו.
+לא מספק: חריגה מאחד מכללי הברזל (שימוש ב"אני", חוסר סייג, היעדר תיקוף).
+טעות: כשל מקצועי (מתן עצה, שיפוטיות, חקירה, או סימן שאלה שלא לצורך).
+דיוק בשפה הסה"רית: נתח את תגובת המתנדב לאור כללי השפה הסהרית. התחשב בהודעת הפונה והמענה לצורך. ציין חריגות אם היו. לעיתים יש חריגות נכונות לאור ניתוח הסיטואציה - ציין גם את זה. כשאתה רושם ביקורת על תגובת המתנדב אל תרשום "כשל" או "טעות חמורה"... השתמש במינוחים יותר רכים: "טעות"..."שגיאה"... "חריגה"... הביקורת צריכה להיות עניינית ומכוונת ללמידה. התייחס לתגובה עצמה ולמידת התאמתה לשפה הסה"רית.
+מענה לצורך: נתח באיזו מידה תגובת המתנדב ענתה לצורך הסמוי של הפונה מתוך הבנה של מצבו הנפשי והמצוקה בנקודת הזמן בשיחה. נתח את המענה לצורך הסמוי כפי שאתה מבין אותו לפי התוכן הגלוי של דברי הפונה. [ניתוח הצורך הסמוי].
+הצעת תגובה חלופית: כאן אתה רושם הצעת תגובה חלופית לתגובת המתנדב. ההצעה צריכה להיות איכותית, יצירתית, לעמוד בכללי השיחה הסהרית, ולקלוע לצרכי הפונה, המצוקה שלו והשלב בשיחה. אורך התגובה והסגנון יהיה מותאם לצורך ולסגנון הודעות הפונה. [התגובה שלך]
+הסבר לאיכות התגובה החלופית: נכון להסביר למה ההצעה החלופית איכותית יותר מתגובת המתנדב. [ההסבר שלך].
+"ניהול הרצף": האם התגובה הנוכחית של המתנדב מקדמת את הפונה לשלב הבא במודל (למשל: מהעמקה לאיסוף משאבים וכוחות) או שהיא תקועה במקום? - בהתאם לרצף הכללי של השיחה עד התגובה הנוכחית. בנוסף עליך לנטר את משך השהייה בבור (שלב ההעמקה) מרגע זיהוי המצוקה:
+זיהוי נקודת היציאה: עליך לציין במפורש באיזו יחידת תגובה זיהית שהפונה ביצע "תנועה החוצה" (שימוש בכוחות, הצעה אופרטיבית, שינוי טון) המאפשרת להתחיל את שלב האיסוף.
+ככלל, אין לצאת מהבור לפני שעברו כ-20 דקות של העמקה רגשית טהורה.
+אם המתנדב יצא מהבור לפני כן - לפני שהפונה בשל לזה: ציין זאת כטעות (יציאה מוקדמת מדי).
+אם המתנדב יצא מהבור בנקודת היציאה המדויקת שזיהית: ציין זאת לטובה כדיוק ברצף.
+אם המתנדב נשאר בבור למרות שהפונה כבר אותת על כוחות (שהייה עודפת): ציין זאת כפספוס של שלב האיסוף.
+זכור: גם אם הפונה מציג כוחות מוקדם מדי , על המתנדב להמשיך לבצע תיקוף עמוק לכאב לפני המעבר לשלב הבא. 
+ציין את השלב בשיחה - פתיחה, שהייה בבור וכו… [שלב בשיחה / האם התחילה יציאה מהבור / האם יש חריגת זמן מוצדקת].
+
+כלל ברזל: אין לנתח, לפרש או להתייחס לתוכן דברי הפונה מנקודת ניתוח סהרית אלא רק מנקודת מבט של הבנת המצוקה והצורך של הפונה.
+1. ניתוח זמני תגובה (בכל יחידת תגובה):
+בכל יחידת תגובה, עליך להוסיף סעיף בשם "זמן תגובה". 
+2. ניהול ה"התכנסות לסיום" (החל מדקה 35):
+עליך לנטר את משך השיחה מרגע הודעת המתנדב הראשונה.
+זיהוי נקודת ה-35: ברגע שהגעת ליחידת תגובה המתרחשת 35 דקות לאחר תחילת השיחה, עליך להוסיף הערה בולטת: "דקה 35: שלב ההתכנסות לסיום".
+ניתוח הדיוק לסיום: החל מנקודה זו, עליך לנתח האם המתנדב מתחיל "לאסוף" את השיחה. האם הוא מבצע סיכום אמפתי? האם הוא מוודא שהפונה לא נשאר ב"בור" ללא כוחות?
+קריטריון איכות: תגובה בדקה ה-35 ומעלה שעדיין "חופרת" בבור מבלי להתחיל תנועה החוצה, תיחשב כניהול רצף לקוי, אלא אם מדובר במקרה חריג (ראה סעיף 3).
+3. מקרים יוצאי דופן להמשך שיחה (מעבר ל-40 דקות):
+למרות הכלל של 40 דקות, עליך לזהות מצבים שבהם סיום השיחה ייחשב כטעות מקצועית. במקרים אלו, עליך לציין לשבח מתנדב שהמשיך את השיחה, או לבקר מתנדב שסיים אותה "על השעון". המקרים הם:
+סיכון אובדני אקוטי: אם המתנדב נמצא בעיצומה של הערכת סיכון או שהפונה נמצא בסיכון גבוה שטרם נוהל.
+חשיפה של טראומה קשה בדקות האחרונות: אם הפונה פתח פצע עמוק (כמו פגיעה מינית או אובדן טרי) רק בדקה ה-35, סיום השיחה ב-40 דקות ייחשב כ"נטישה רגשית".
+הצפה/התקף חרדה פעיל: אם הפונה מדווח על רעד, חנק או ניתוק (דיסוציאציה) שטרם עברו קרקוע (Grounding).
+חובת הסבר: בכל פעם שאתה ממליץ להמשיך מעבר ל-40 דקות, עליך לרשום: "חריגת זמן מוצדקת: [הסיבה]".
+
+מנגנון ביקורת עצמית (Self-Correction Step) - לפני הצגת הניתוח וודא:
+בצע בדיקה פנימית: האם בטעות השתמשתי בסימן שאלה? האם הצעתי פתרון פרקטי במקום להישאר בבור? אם כן – תקן את עצמך לפני הכתיבה.
+האם חישבתי נכון את הזמן שעבר מהודעת המתנדב הראשונה?
+האם בדקה ה-35 הערתי על הצורך בסיום?
+האם בדקתי אם מדובר במקרה חירום (אובדנות/טראומה/חרדה) שמצדיק חריגה מהשעון?
+האם וידאתי שוב שאין סימני שאלה בהצעה החלופית?
+
+[שאר פרקי המידע הסהרי המלאים שלך...]
+</pre>
+
 <script>
     let finalPackage = "";
 
     function prepareFinalAnalysis() {
         const input = document.getElementById('rawInput').value;
+        const staticPrompt = document.getElementById('staticPrompt').innerText;
+        
         if (!input.trim()) return alert("אנא הדבק שיחה.");
 
-        // --- שלב א: אנונימיזציה וניקוי לוג ---
+        // --- אנונימיזציה וניקוי לוג ---
         const cleanedLog = input
-            .replace(/\[\d{2}:\d{2}:\d{2}\]/g, '') // הסרת זמנים
             .replace(/ מתנדב סה"ר/g, 'מתנדב')
             .replace(/באיזה שם או כינוי לקרוא לך\?[\s\S]*?\[Read\]\s*\w+/g, 'באיזה שם או כינוי לקרוא לך? [השם הוסר]') 
-            .replace(/^\s*[\r\n]/gm, '') // הסרת שורות ריקות
+            .replace(/^\s*[\r\n]/gm, '') 
             .trim();
 
-        // --- שלב ב: בניית הפרומפט המלא (שמרתי על הלוגיקה המקורית שלך) ---
-        const fullPrompt = `
-חוק בל יעבור (Strict PII Rule): חל עליך איסור מוחלט להשתמש בשמות פרטיים שמופיעים בשיחה הגולמית. עליך להתייחס לפונה אך ורק בתור "הפונה". 
-
-תפקיד: אתה מדריך פדגוגי בכיר, וותיק ומעולה המומחה בשפת הסיוע הרגשי. 
-משימתך: ניתוח שיחת סיוע בצ'אט תוך הישענות מוחלטת על הפרוטוקול המקצועי של שפת הסיוע.
-אופן הניתוח: פדגוגי, טוטאלי ומפורט של כל השיחה מתחילתה ועד סופה ללא דילוג על שום שלב.
-
-### הוראת עיצוב קריטית: אין להשתמש בטבלאות בשום פנים ואופן. הניתוח לכל יחידת תגובה יוצג כרשימה של סעיפים (Bullet Points) רציפים, המאפשרים פירוט מעמיק. ###
-
-מבנה יחידת התגובה (חובה להשתמש בפורמט זה):
-יחידת תגובה [מספר]
-* הודעת הפונה: העתק מילה במילה.
-* תגובת המתנדב: העתק מילה במילה.
-* סיווג איכות התגובה: [מצוין / טוב / מספק / לא מספק / טעות].
-* דיוק בשפת הסיוע: נתח לאור כללי השפה (ניקוי האני, סייג, ללא שאלות).
-* מענה לצורך: נתח צורך סמוי לפי התוכן הגלוי.
-* הצעת תגובה חלופית: תגובה איכותית, ללא סימני שאלה (?), חובת סייג.
-* ניהול הרצף: שלב בשיחה (פתיחה/בור/איסוף).
-
-סיכום פדגוגי סופי:
-* אבחון מאפייני המצוקה של הפונה (מבט על).
-* משוב מסכם למתנדב: נקודות לשימור ושיפור.
-* ציון סופי (1-10) והסבר.
+        // --- בניית החבילה המלאה ---
+        finalPackage = `${staticPrompt}
 
 הנה השיחה לניתוח:
 -------------------------------------------
 ${cleanedLog}
 -------------------------------------------
-נתח כעת את השיחה מתחילתה ועד סופה ברשימה מפורטת בלבד.
-`;
+נתח כעת את השיחה מתחילתה ועד סופה ברשימה מפורטת בלבד לפי ההוראות המדויקות לעיל.`;
 
-        finalPackage = fullPrompt;
-        
-        // הצגת כפתורי ההמשך
+        // תצוגת כפתורים והעתקה
         document.getElementById('copyBtn').style.display = 'block';
         document.getElementById('openBtn').style.display = 'flex';
-        
-        // ניסיון העתקה אוטומטית
         copyToClipboard();
     }
 
-    function copyToClipboard() {
+    async function copyToClipboard() {
         if (!finalPackage) return;
-        navigator.clipboard.writeText(finalPackage).then(() => {
+        try {
+            await navigator.clipboard.writeText(finalPackage);
             document.getElementById('status').style.display = 'block';
-            document.getElementById('copyBtn').innerText = "✅ הועתק";
-        }).catch(err => {
-            // גיבוי למקרה של חסימת API
+            document.getElementById('copyBtn').innerText = "✅ החבילה הועתקה";
+        } catch (err) {
             const el = document.createElement('textarea');
             el.value = finalPackage;
             document.body.appendChild(el);
@@ -141,7 +165,7 @@ ${cleanedLog}
             document.execCommand('copy');
             document.body.removeChild(el);
             document.getElementById('status').style.display = 'block';
-        });
+        }
     }
 </script>
 
